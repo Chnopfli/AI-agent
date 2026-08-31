@@ -1,34 +1,36 @@
+import argparse
 import os
+
 from dotenv import load_dotenv
 from openai import OpenAI
 
 
-load_dotenv()
-api_key = os.environ.get("OPENROUTER_API_KEY")
-if api_key is None:
-    raise RuntimeError("api key was not found")
+def main() -> None:
+    parser = argparse.ArgumentParser(description="AI Code Assistant")
+    parser.add_argument("user_prompt", type=str, help="Prompt to send to the LLM")
+    args = parser.parse_args()
 
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=api_key,
-)
+    load_dotenv()
+    api_key = os.environ.get("OPENROUTER_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENROUTER_API_KEY environment variable not set")
 
-def main():
+    client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=api_key,
+    )
     response = client.chat.completions.create(
         model="openrouter/free",
-        messages=[
-            {
-                "role": "user",
-                "content": "Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum.",
-            }
-        ],
+        messages=[{"role": "user", "content": args.user_prompt}],
     )
-    if response.usage is None:
-        raise RuntimeError("failed API request")
-    promt_tokens = response.usage.prompt_tokens
-    completion_tokens =response.usage.completion_tokens
-    print(f"Prompt tokens: {promt_tokens}" + "\n" + f"Response tokens: {completion_tokens}")
-    print(f"Response: {response.choices[0].message.content}")
+    if not response.usage:
+        raise RuntimeError("API response appears to be malformed")
+
+    print("Prompt tokens:", response.usage.prompt_tokens)
+    print("Response tokens:", response.usage.completion_tokens)
+    print("Response:")
+    print(response.choices[0].message.content)
+
 
 if __name__ == "__main__":
     main()
