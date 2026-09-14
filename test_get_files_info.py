@@ -1,0 +1,6 @@
+from functions.get_files_info import get_files_info
+
+print(get_files_info("calculator", ".") + "\n" + 
+      get_files_info("calculator", "/bin") + "\n" + 
+      get_files_info("calculator", "../") + "\n" + 
+      get_files_info("calculator", "main.py"))
