@@ -1,22 +1,14 @@
 from functions.get_file_content import get_file_content
 
-'''print("\n" +
-    "Result for current directory:" + "\n" +
-      get_files_info("calculator", ".") + "\n\n" +
-      "Result for 'pkg' directory:" + "\n" +
-      get_files_info("calculator", "pkg") + "\n\n" +
-      "Result for '/bin' directory:" + "\n" +
-      get_files_info("calculator", "/bin") + "\n\n" +
-      "Result for '../' directory:" + "\n" + 
-      get_files_info("calculator", "../"))
-      '''
-'''
-result = get_file_content("calculator", "lorem.txt")
-print(f"lorem.txt length: {len(result)}")
-print(f"lorem.txt truncated: {'truncated' in result}")
-print()
-'''
+result01 = get_file_content("calculator", "lorem.txt")
+print(f"lorem.txt length: {len(result01)}")
+print(f"lorem.txt truncated: {'truncated' in result01}")
+print(get_file_content("calculator", "main.py"))
+print(get_file_content("calculator", "pkg/calculator.py"))
+print(get_file_content("calculator", "/bin/cat"))
+print(get_file_content("calculator", "pkg/does_not_exist.py"))
 
+"""
 testcases: list[tuple] = [
 ("calculator", "main.py"),
 ("calculator", "pkg/calculator.py"),
@@ -30,3 +22,4 @@ for case in testcases:
     else:
        print(f"{case[1]} length: {len(result)}")
        print(f"{case[1]} truncated: {'truncated' in result}")
+"""
