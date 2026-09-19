@@ -27,6 +27,12 @@ A Python-based AI Code Assistant that interacts with LLMs via the OpenRouter API
    source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
    ```
 
+   or just
+
+   ```bash
+   uv init
+   ```
+
 3. **Install dependencies**:
    ```bash
    pip install openai python-dotenv
@@ -37,9 +43,9 @@ A Python-based AI Code Assistant that interacts with LLMs via the OpenRouter API
    ```text
    OPENROUTER_API_KEY=your_api_key_here
    ```
-   
+
 5. **Set a system prompt under prompts.py**:
-   ```text
+   ```python
    system_prompt = """
    your text here
    """
@@ -50,7 +56,9 @@ Run the assistant by passing your prompt as a string:
 ```bash
 python main.py "Explain how a for loop works in Python"
 ```
+
 or
+
 ```bash
 uv run main.py "Explain how a for loop works in Python"
 ```
@@ -63,5 +71,4 @@ python main.py "What is a decorator?" --verbose
 ## Project Structure
 - `main.py`: The entry point of the application.
 - `prompts.py`: Contains the `system_prompt` logic.
-- `calculator` is just a test "Project"
- 
+- `calculator`: A test "Project" within the repository.
