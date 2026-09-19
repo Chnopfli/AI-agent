@@ -1,7 +1,7 @@
 [project]
-name = "your-project-name"
+name = "AI-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Python-based AI assistant using OpenRouter API"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
