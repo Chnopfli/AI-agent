@@ -1,4 +1,6 @@
 import os
+from openai.types.chat import ChatCompletionToolParam
+
 
 def get_file_content(working_directory: str, file_path: str) -> str:
     try:
