@@ -39,6 +39,7 @@ def generate_content(client: OpenAI, messages: list, verbose: bool) -> None:
         model="openrouter/free",
         messages=messages,
         tools=available_functions,
+        temperature=None
     )
     if not response.usage:
         raise RuntimeError("API response appears to be malformed")

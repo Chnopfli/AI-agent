@@ -1,4 +1,5 @@
 import os
+
 from openai.types.chat import ChatCompletionToolParam
 
 
@@ -22,3 +23,21 @@ def get_file_content(working_directory: str, file_path: str) -> str:
    
     except Exception as e:
         return f"Error: {e}"
+
+schema_get_file_content: ChatCompletionToolParam = {
+    "type": "function",
+    "function": {
+        "name": "get_file_content",
+        "description": "Reads the content of a file (up to 10,000 characters)",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path": {
+                    "type": "string",
+                    "description": "The relative path to the file that should be read.",
+                },
+            },
+            "required": ["file_path"],
+        },
+    },
+}

@@ -1,4 +1,5 @@
 import os
+
 from openai.types.chat import ChatCompletionToolParam
 
 def get_files_info(working_directory: str, directory: str = ".") -> str:
@@ -36,6 +37,7 @@ schema_get_files_info: ChatCompletionToolParam = {
                 "directory": {
                     "type": "string",
                     "description": "Directory path to list files from, relative to the working directory (default is the working directory itself)",
+                    "default": "."
                 },
             },
         },
